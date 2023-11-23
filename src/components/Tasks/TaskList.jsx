@@ -9,7 +9,7 @@ function TaskList ({ taskList, onDeleteTask }) {
         <div className='taskList-contenedor' key={tl.id}>
           <div className='taskList'>
             <div className='taskList-encabezado'>
-              <h1>Lista de tareas</h1>
+              <h1>{tl.nombre}</h1>
               <span onClick={() => onDeleteTask(tl.id)}>[X]</span>
             </div>
             <TaskItems />

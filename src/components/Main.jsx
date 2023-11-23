@@ -6,10 +6,10 @@ import { useState } from 'react'
 function Main () {
   const [taskList, setTaskList] = useState([])
 
-  function eventAddTaskList () {
+  function eventAddTaskList (_nombre) {
     const newTaskList = {
       id: self.crypto.randomUUID(),
-      nombre: 'Lista de tareas'
+      nombre: _nombre
     }
     setTaskList([...taskList, newTaskList])
   }
@@ -26,7 +26,7 @@ function Main () {
   return (
     <main>
       {getTaskList() ? (' ') : (<TaskList onDeleteTask={(id) => eventDeletTaskList(id)} taskList={taskList} />)}
-      <AddTaskList onAddTask={() => { eventAddTaskList() }} getTaskList={getTaskList} />
+      <AddTaskList onAddTask={(nombre) => { eventAddTaskList(nombre) }} getTaskList={getTaskList} />
     </main>
   )
 }
