@@ -1,10 +1,14 @@
 /* eslint-disable no-undef */
 import AddTaskList from './Tasks/AddTaskList'
 import TaskList from './Tasks/TaskList'
+import localForage from '../data/dataLocal'
 import { useState } from 'react'
 
 function Main () {
   const [taskList, setTaskList] = useState([])
+
+  console.log(localForage.saveDataToLocalForage())
+  console.log(localForage.getDataFromLocalForage())
 
   function eventAddTaskList (_nombre) {
     const newTaskList = {
