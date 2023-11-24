@@ -14,18 +14,18 @@ function Main () {
     setTaskList([...taskList, newTaskList])
   }
 
-  const eventDeletTaskList = (id) => {
-    const deleletTask = taskList.filter(tl => tl.id !== id)
-    setTaskList([...deleletTask])
+  const eventDeleteTaskList = (id) => {
+    const deleteTask = taskList.filter(tl => tl.id !== id)
+    setTaskList([...deleteTask])
   }
 
   function getTaskList () {
     return taskList.length === 0
   }
-  console.log(taskList)
+
   return (
     <main>
-      {getTaskList() ? (' ') : (<TaskList onDeleteTask={(id) => eventDeletTaskList(id)} taskList={taskList} />)}
+      {getTaskList() ? (<></>) : (taskList.map(tl => (<TaskList key={tl.id} onDeleteTask={(id) => eventDeleteTaskList(id)} {...tl} />)))}
       <AddTaskList onAddTask={(nombre) => { eventAddTaskList(nombre) }} getTaskList={getTaskList} />
     </main>
   )

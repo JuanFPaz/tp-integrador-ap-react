@@ -1,4 +1,45 @@
-header{
+:root {
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+  
+    color-scheme: light dark;
+    color: rgba(255, 255, 255, 0.87);
+    background-color: #242424;
+  
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+  }
+  *{
+    box-sizing: border-box;
+  }
+  *,*::after,*::before{
+    box-sizing: inherit;
+  }
+  a {
+    font-weight: 500;
+    color: #646cff;
+    text-decoration: inherit;
+  }
+  a:hover {
+    color: #535bf2;
+  }
+  body {
+    margin: 0;
+  }
+  #root{
+    width: 1920px;
+  }
+  h1 {
+    margin: 0;
+    font-size: 3.2em;
+    line-height: 1.1;
+  }
+
+  header{
     width: 100%;
     height: 100px;
     display: flex;
@@ -15,22 +56,20 @@ main{
     width: 100%;
     display: flex;
     justify-content: flex-start;
-    padding: 10px;
-    overflow: hidden;
 }
 
-/* .taskList-contenedor,
+.taskList-contenedor,
 .addTaskList-contenedor{
-    padding: 10px;
+    padding: 20px;
     display: flex;
     justify-content: flex-start;
-} */
+}
 
 .addTaskList,
 .taskList{
     width: 250px;
     padding: 10px;
-    margin-right: 10px ;
+    margin-right: 5px ;
     height: max-content;
     border-radius: 10px;
     background-color: rgb(26, 26, 26);
@@ -45,19 +84,8 @@ main{
     padding: 0 5px 0 5px;
 }
 
-.addTaskList{
-    display: flex;
-    justify-content: space-between;
-}
-
-.addTaskList form,
-.addTaskList input{
-    width: 90%;
-}
-
 .taskList-encabezado h1,
-.taskList-encabezado span,
-.addTaskList span{
+.taskList-encabezado span{
     display: block;
 }
 
@@ -66,23 +94,31 @@ main{
     flex-direction: column;
     justify-content: flex-start;
     padding: 5px;
-    height: 700px;
+    height: auto;
     border-radius: 5px;
     color: rgba(255, 255, 255, 0.87);
     background-color: #242424;
 }
 
-.taskItems{
+.taskItems,
+.placeholder{
     display: flex;
     flex-direction: column;
     padding: 5px;
-    height: max-content;
+    min-height: 50px;
     color: inherit;
     margin-bottom: 5px;
     border-radius: 5px;
     background-color: #41404086;
 }
+.taskItems:hover{
+    cursor: pointer;
+    border: #535bf2 2px solid;
+}
+.taskItems:-moz-drag-over{
 
+    opacity: 0.4;
+}
 .taskItems-tarea{
     display: flex;
     justify-content: space-between;
@@ -94,8 +130,6 @@ main{
     overflow: hidden;
     text-overflow: ellipsis;
 }
-
-
 span:hover{
     cursor: pointer;
     color: black;

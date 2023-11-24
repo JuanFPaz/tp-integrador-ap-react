@@ -1,16 +1,15 @@
-function TaskItems () {
+/* eslint-disable react/prop-types */
+function TaskItems ({ nombre, id, completada, onDeleteTaskItem, onCheckTaskItem }) {
   return (
-    <div className='taskItems-contenedor'>
-      <div className='taskItems'>
-        <div className='taskItems-tarea'>
-          <div className='tarea-texto'>Compra Pan</div>
-          <div>
-            <span>[X]</span>
-          </div>
-        </div>
+    <div className='taskItems'>
+      <div className='taskItems-tarea'>
+        <div className='tarea-texto'>{nombre}</div>
         <div>
-          <input type='checkbox' name='asd' id='asd' /> pendiente
+          <span onClick={() => { onDeleteTaskItem(id) }}>[X]</span>
         </div>
+      </div>
+      <div>
+        <input type='checkbox' name='asd' id='asd' onChange={() => { onCheckTaskItem(id) }} /> {completada ? 'finalizada' : 'pendiente'}
       </div>
     </div>
   )

@@ -16,9 +16,6 @@
 *{
   box-sizing: border-box;
 }
-*,*::after,*::before{
-  box-sizing: inherit;
-}
 a {
   font-weight: 500;
   color: #646cff;

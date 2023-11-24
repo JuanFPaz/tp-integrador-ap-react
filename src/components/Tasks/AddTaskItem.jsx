@@ -1,9 +1,8 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react'
 
-function AddTaskList ({ onAddTask, getTaskList }) {
+function AddTaskItem ({ onAddTaskItem }) {
   const [showForm, setShowForm] = useState(false)
-
   function toggleForm () {
     setShowForm(!showForm)
   }
@@ -12,7 +11,7 @@ function AddTaskList ({ onAddTask, getTaskList }) {
     e.preventDefault()
     const formAddTask = new FormData(e.target)
     const nombre = formAddTask.get('nombre')
-    onAddTask(nombre)
+    onAddTaskItem(nombre)
     e.target.reset()
     setShowForm(false)
   }
@@ -20,12 +19,12 @@ function AddTaskList ({ onAddTask, getTaskList }) {
     <>
       {showForm
         ? (
-          <div className='addTaskList'>
+          <div className='taskForm-contenedor'>
             <form onSubmit={eventNewTaskList}>
               <input
                 type='text'
-                placeholder='Introduzca titulo de la lista'
-                aria-label='Nombre de la lista'
+                placeholder='Introduzca nombre de la tarea'
+                aria-label='Nombre de la tarea'
                 name='nombre'
                 id='nombre'
                 required
@@ -36,14 +35,13 @@ function AddTaskList ({ onAddTask, getTaskList }) {
           </div>
           )
         : (
-          <div className='addTaskList' onClick={toggleForm}>
-            [+] {getTaskList() ? 'Añadir una lista' : 'Añadir otra lista'}
+          <div className='taskForm-contenedor' onClick={toggleForm}>
+            [+] Añadir nueva tarea
           </div>
           )}
-
     </>
 
   )
 }
 
-export default AddTaskList
+export default AddTaskItem

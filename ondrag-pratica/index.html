@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <main>
+      <div class="taskList-contenedor">
+        <div class="taskList">
+          <div class="taskList-encabezado">
+            <h1>{tl.nombre}</h1>
+            <span onclick="alert('asdasd')">[X]</span>
+          </div>
+          <div
+            class="taskItems-contenedor"
+            ondrop="drop(event)"
+            ondragover="allowDrop(event)"
+          >
+            <div
+              class="taskItems"
+              ondragstart="dragStart(event)"
+              draggable="true"
+              ondragover="allowDrop(event)"
+              id="dragtarget1"
+            >
+              <div class="taskItems-tarea">
+                <div class="tarea-texto">Compra Pan</div>
+                <div>
+                  <span>[X]</span>
+                </div>
+              </div>
+            </div>
+            <div
+              class="taskItems"
+              ondragstart="dragStart(event)"
+              ondragover="allowDrop(event)"
+              draggable="true"
+              id="dragtarget2"
+            >
+              <div class="taskItems-tarea">
+                <div class="tarea-texto">Compra Pan</div>
+                <div>
+                  <span>[X]</span>
+                </div>
+              </div>
+            </div>
+            <div
+              class="taskItems"
+              ondragstart="dragStart(event)"
+              ondragover="allowDrop(event)"
+              draggable="true"
+              id="dragtarget3"
+            >
+              <div class="taskItems-tarea">
+                <div class="tarea-texto">Compra Pan</div>
+                <div>
+                  <span>[X]</span>
+                </div>
+              </div>
+              <div><input type="checkbox" name="asd" id="asd" /> pendiente</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="taskList-contenedor">
+        <div class="taskList">
+          <div class="taskList-encabezado">
+            <h1>{tl.nombre}</h1>
+            <span onclick="alert('asdasd')">[X]</span>
+          </div>
+          <div
+            class="taskItems-contenedor"
+            ondrop="drop(event)"
+            ondragover="allowDrop(event)"
+          ></div>
+        </div>
+      </div>
+    </main>
+    <script src="./js/main.js"></script>
+  </body>
+</html>
