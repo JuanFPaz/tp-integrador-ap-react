@@ -23,6 +23,7 @@ function App () {
         setCargando(false)
       }
     }
+    console.log('Se renderiza App')
     getData()
   }, [])
   return (

@@ -3,8 +3,8 @@ import { useState } from 'react'
 import AddTaskItem from './AddTaskItem'
 import TaskItems from './TaskItems'
 
-function TaskList ({ nombre, id, tareas, onDeleteTask, onRenameTaskList, onTaskItem }) {
-  const [taskItem, setTaskItem] = useState(tareas)
+function TaskList ({ nombre, id, tareas, onDeleteTaskList, onRenameTaskList, onChangeTaskItem }) {
+  const [taskItem, setTaskItem] = useState([...tareas])
   const [showRename, setRename] = useState(false)
 
   function toggleRename () {
@@ -18,7 +18,7 @@ function TaskList ({ nombre, id, tareas, onDeleteTask, onRenameTaskList, onTaskI
     }
 
     setTaskItem([...taskItem, newTaskItem])
-    onTaskItem(id, [...taskItem, newTaskItem])
+    onChangeTaskItem(id, [...taskItem, newTaskItem])
   }
   function eventCheckTaskItem (_id) {
     const modifiedTasks = taskItem.map(ti =>
@@ -27,17 +27,24 @@ function TaskList ({ nombre, id, tareas, onDeleteTask, onRenameTaskList, onTaskI
         : ti
     )
     setTaskItem([...modifiedTasks])
-    onTaskItem(id, [...modifiedTasks])
+    onChangeTaskItem(id, [...modifiedTasks])
   }
   function eventDeleteTaskItem (_id) {
     const deleteTaskItem = taskItem.filter(ti => ti.id !== _id)
     setTaskItem([...deleteTaskItem])
-    onTaskItem(id, [...deleteTaskItem])
+    onChangeTaskItem(id, [...deleteTaskItem])
   }
-  function eventRenameTaskitem (_id, renombre) {
+  function eventRenameTaskItem (_id, renombre) {
     const renameTaskList = taskItem.map(ti => ti.id === _id ? { ...ti, nombre: renombre } : ti)
     setTaskItem([...renameTaskList])
-    onTaskItem(id, [...renameTaskList])
+    onChangeTaskItem(id, [...renameTaskList])
+  }
+  function eventFormRenameTaskList (e) {
+    e.preventDefault()
+    const formRename = new FormData(e.target)
+    const rename = formRename.get('rename')
+    onRenameTaskList(id, rename)
+    setRename(false)
   }
   return (
     <>
@@ -46,14 +53,7 @@ function TaskList ({ nombre, id, tareas, onDeleteTask, onRenameTaskList, onTaskI
           {showRename
             ? (
               <>
-                <form onSubmit={(e) => {
-                  e.preventDefault()
-                  const formData = new FormData(e.target)
-                  const rename = formData.get('rename')
-                  onRenameTaskList(id, rename)
-                  setRename(false)
-                }}
-                >
+                <form onSubmit={eventFormRenameTaskList}>
                   <input type='text' name='rename' id='rename' placeholder='Cambie el nombre de la lista de tareas' required />
                   <input type='submit' value='Cambiar' />
                   <button onClick={toggleRename}>Cancelar</button>
@@ -64,13 +64,12 @@ function TaskList ({ nombre, id, tareas, onDeleteTask, onRenameTaskList, onTaskI
             : (
               <>
                 <h1 onClick={toggleRename}>{nombre}</h1>
-                <button onClick={() => onDeleteTask(id)}>X</button>
+                <button onClick={() => onDeleteTaskList(id)}>X</button>
               </>
               )}
-
         </div>
         <div className='taskItems-contenedor'>
-          {taskItem.map(ti => (<TaskItems key={ti.id} onDeleteTaskItem={(id) => { eventDeleteTaskItem(id) }} onCheckTaskItem={(id) => { eventCheckTaskItem(id) }} onRenameTaskItem={(id, renombre) => { eventRenameTaskitem(id, renombre) }} {...ti} />))}
+          {taskItem.map(ti => (<TaskItems key={ti.id} onDeleteTaskItem={(id) => { eventDeleteTaskItem(id) }} onCheckTaskItem={(id) => { eventCheckTaskItem(id) }} onRenameTaskItem={(id, renombre) => { eventRenameTaskItem(id, renombre) }} {...ti} />))}
         </div>
         <AddTaskItem onAddItem={(nombre) => { eventAddTaskItem(nombre) }} />
       </div>

@@ -35,8 +35,8 @@ function AddTaskItem ({ onAddItem }) {
           </div>
           )
         : (
-          <div className='taskForm-contenedor' onClick={toggleForm}>
-            [+] Añadir nueva tarea
+          <div className='taskForm-contenedor'>
+            <button onClick={toggleForm}> + Añadir Nueva Tarea</button>
           </div>
           )}
     </>

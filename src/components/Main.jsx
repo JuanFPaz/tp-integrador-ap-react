@@ -17,6 +17,7 @@ function Main ({ datos }) {
         throw new Error(error)
       }
     }
+    console.log('se RENDERIZA MAIN')
     guardarDatos()
   }, [taskList])
 
@@ -32,21 +33,18 @@ function Main ({ datos }) {
     const renameTaskList = taskList.map(tl => tl.id === id ? { ...tl, nombre: renombre } : tl)
     setTaskList([...renameTaskList])
   }
-
   function eventDeleteTaskList (id) {
     const deleteTask = taskList.filter(tl => tl.id !== id)
     setTaskList([...deleteTask])
   }
-
-  function eventTaskItem (id, unArray) {
+  function eventChangeTaskItem (id, unArray) {
     const addTaskItem = taskList.map(tl => tl.id === id ? { ...tl, tareas: [...unArray] } : tl)
     setTaskList([...addTaskItem])
   }
-
   return (
     <main>
-      {taskList.map(tl => (<TaskList key={tl.id} onDeleteTask={(id) => eventDeleteTaskList(id)} {...tl} onTaskItem={(id, unArray) => eventTaskItem(id, unArray)} onRenameTaskList={(id, rename) => { eventRanemaTaskList(id, rename) }} />))}
-      <AddTaskList onAddTask={(nombre) => { eventAddTaskList(nombre) }} />
+      {taskList.map(tl => (<TaskList key={tl.id} {...tl} onDeleteTaskList={(id) => eventDeleteTaskList(id)} onChangeTaskItem={(id, unArray) => eventChangeTaskItem(id, unArray)} onRenameTaskList={(id, rename) => { eventRanemaTaskList(id, rename) }} />))}
+      <AddTaskList onAddTaskList={(nombre) => { eventAddTaskList(nombre) }} />
     </main>
   )
 }

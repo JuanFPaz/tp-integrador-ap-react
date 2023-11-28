@@ -1,27 +1,28 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react'
 
-function AddTaskList ({ onAddTask, getTaskList }) {
+function AddTaskList ({ onAddTaskList }) {
   const [showForm, setShowForm] = useState(false)
 
   function toggleForm () {
     setShowForm(!showForm)
   }
 
-  const eventNewTaskList = (e) => {
+  function eventFormNewTaskList (e) {
     e.preventDefault()
     const formAddTask = new FormData(e.target)
     const nombre = formAddTask.get('nombre')
-    onAddTask(nombre)
+    onAddTaskList(nombre)
     e.target.reset()
     setShowForm(false)
   }
+
   return (
-    <>
+    <div className='addTaskList'>
       {showForm
         ? (
-          <div className='addTaskList'>
-            <form onSubmit={eventNewTaskList}>
+          <>
+            <form onSubmit={eventFormNewTaskList}>
               <input
                 type='text'
                 placeholder='Introduzca titulo de la lista'
@@ -33,15 +34,15 @@ function AddTaskList ({ onAddTask, getTaskList }) {
               <input type='submit' value='Añadir' />
               <button onClick={toggleForm}>Cancelar</button>
             </form>
-          </div>
+          </>
           )
         : (
-          <div className='addTaskList' onClick={toggleForm}>
-            [+] Añadir una nueva lista
-          </div>
+          <>
+            <button onClick={toggleForm}> + Añadir Nueva Lista</button>
+          </>
           )}
 
-    </>
+    </div>
 
   )
 }
