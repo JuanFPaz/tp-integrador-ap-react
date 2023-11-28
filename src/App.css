@@ -1,104 +1,106 @@
-header{
-    width: 100%;
-    height: 100px;
-    display: flex;
-    align-items: center;
-    border-bottom: 2px solid white;
+header {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid white;
 }
 
-.header-titulo{
-    width: 20%;
-    text-align: center;
+.header-titulo {
+  width: 20%;
+  text-align: center;
 }
 
-main{
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
-    padding: 10px;
-    overflow: hidden;
+main {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  padding: 10px;
+  overflow: hidden;
 }
-
-/* .taskList-contenedor,
-.addTaskList-contenedor{
-    padding: 10px;
-    display: flex;
-    justify-content: flex-start;
-} */
 
 .addTaskList,
-.taskList{
-    width: 250px;
-    padding: 10px;
-    margin-right: 10px ;
-    height: max-content;
-    border-radius: 10px;
-    background-color: rgb(26, 26, 26);
-    color: rgb(240, 240, 240);
+.taskList {
+  width: 280px;
+  padding: 10px;
+  margin-right: 10px;
+  height: max-content;
+  border-radius: 10px;
+  background-color: rgb(26, 26, 26);
+  color: rgb(240, 240, 240);
 }
-.taskList h1{
-    font-size: x-large;
+.taskList h1 {
+  font-size: x-large;
 }
-.taskList-encabezado{
-    display: flex;
-    justify-content: space-between;
-    padding: 0 5px 0 5px;
-}
-
-.addTaskList{
-    display: flex;
-    justify-content: space-between;
-}
-
-.addTaskList form,
-.addTaskList input{
-    width: 90%;
-}
-
-.taskList-encabezado h1,
-.taskList-encabezado span,
-.addTaskList span{
-    display: block;
-}
-
-.taskItems-contenedor{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    padding: 5px;
-    height: 700px;
-    border-radius: 5px;
-    color: rgba(255, 255, 255, 0.87);
-    background-color: #242424;
-}
-
-.taskItems{
-    display: flex;
-    flex-direction: column;
-    padding: 5px;
-    height: max-content;
-    color: inherit;
-    margin-bottom: 5px;
-    border-radius: 5px;
-    background-color: #41404086;
-}
-
-.taskItems-tarea{
-    display: flex;
-    justify-content: space-between;
-}
-
-.taskItems-tarea .tarea-texto{
-    max-width: 200px;
-    height: max-content;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-
-span:hover{
+.taskList h1:hover,
+span:hover {
     cursor: pointer;
     color: black;
     background-color: aliceblue;
-    border-radius: 25%;
+    border-radius: 5px;
+}
+.taskList-encabezado {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 5px 5px 5px;
+}
+.taskList-encabezado button {
+  height: 20px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.addTaskList {
+  display: flex;
+  justify-content: space-between;
+}
+
+.taskItems-contenedor {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  max-height: 700px;
+  border-radius: 5px;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+  overflow-x: auto;
+}
+
+.taskItems {
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+  padding: 5px;
+  height: max-content;
+  color: inherit;
+
+  border-radius: 5px;
+  background-color: #41404086;
+}
+
+.taskItems-tarea {
+  display: flex;
+  justify-content: space-between;
+}
+
+.taskItems-tarea .tarea-texto {
+  max-width: 200px;
+  height: max-content;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+span:hover {
+  cursor: pointer;
+  color: black;
+  background-color: aliceblue;
+}
+
+form {
+  width: 100%;
+}
+
+input[type='text'] {
+  width: 100%;
 }

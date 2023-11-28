@@ -1,17 +1,44 @@
 /* eslint-disable react/prop-types */
-function TaskItems ({ nombre, id, completada, onDeleteTaskItem, onCheckTaskItem }) {
+import { useState } from 'react'
+
+function TaskItems ({ nombre, id, completada, onDeleteTaskItem, onCheckTaskItem, onRenameTaskItem }) {
+  const [showRenameItem, setRenameItem] = useState(false)
   return (
-    <div className='taskItems'>
-      <div className='taskItems-tarea'>
-        <div className='tarea-texto'>{nombre}</div>
-        <div>
-          <span onClick={() => { onDeleteTaskItem(id) }}>[X]</span>
-        </div>
-      </div>
-      <div>
-        <input type='checkbox' name='asd' id='asd' onChange={() => { onCheckTaskItem(id) }} /> {completada ? 'finalizada' : 'pendiente'}
-      </div>
-    </div>
+    <>
+      {showRenameItem
+        ? (
+          <div className='taskItems'>
+            <form onSubmit={(e) => {
+              e.preventDefault()
+              const formData = new FormData(e.target)
+              const rename = formData.get('asd')
+              onRenameTaskItem(id, rename)
+              e.target.reset()
+              setRenameItem(false)
+            }}
+            >
+              <input type='text' name='asd' id='asd' />
+              <input type='submit' value='Añadir' />
+              <button onClick={() => { setRenameItem(!showRenameItem) }}>Cancelar</button>
+            </form>
+          </div>)
+        : (
+          <div className='taskItems'>
+            <div className='taskItems-tarea'>
+              <div className='tarea-texto'>
+                <span onClick={() => { setRenameItem(!showRenameItem) }}>{nombre}</span>
+              </div>
+              <div>
+                <button onClick={() => { onDeleteTaskItem(id) }}>X</button>
+              </div>
+            </div>
+            <div>
+              <input type='checkbox' checked={completada} name='checkTask' id='checkTask' onChange={() => { onCheckTaskItem(id) }} /> {completada ? 'finalizada' : 'pendiente'}
+            </div>
+          </div>)}
+
+    </>
+
   )
 }
 

@@ -31,8 +31,8 @@ function AddTaskList ({ onAddTask, getTaskList }) {
                 required
               />
               <input type='submit' value='Añadir' />
+              <button onClick={toggleForm}>Cancelar</button>
             </form>
-            <span onClick={toggleForm}>[X]</span>
           </div>
           )
         : (

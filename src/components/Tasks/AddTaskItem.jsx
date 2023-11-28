@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react'
 
-function AddTaskItem ({ onAddTaskItem }) {
+function AddTaskItem ({ onAddItem }) {
   const [showForm, setShowForm] = useState(false)
   function toggleForm () {
     setShowForm(!showForm)
@@ -11,7 +11,7 @@ function AddTaskItem ({ onAddTaskItem }) {
     e.preventDefault()
     const formAddTask = new FormData(e.target)
     const nombre = formAddTask.get('nombre')
-    onAddTaskItem(nombre)
+    onAddItem(nombre)
     e.target.reset()
     setShowForm(false)
   }
@@ -30,8 +30,8 @@ function AddTaskItem ({ onAddTaskItem }) {
                 required
               />
               <input type='submit' value='Añadir' />
+              <button onClick={toggleForm}>Cancelar</button>
             </form>
-            <span onClick={toggleForm}>[X]</span>
           </div>
           )
         : (
