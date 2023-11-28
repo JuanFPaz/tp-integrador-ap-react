@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import AddTaskList from './Tasks/AddTaskList'
 import TaskList from './Tasks/TaskList'
-import localForage from '../data/dataLocal'
+import localForage from 'localforage'
 import { useEffect, useState } from 'react'
 
 function Main ({ datos }) {
@@ -9,9 +9,14 @@ function Main ({ datos }) {
 
   useEffect(() => {
     async function guardarDatos () {
-      await localForage.saveDataToLocalForage('taskList', JSON.stringify(taskList))
+      try {
+        await localForage.setItem('taskList', JSON.stringify(taskList))
+        console.log('Datos guardados en LocalForage.')
+      } catch (error) {
+        console.error('Error al guardar datos en LocalForage:', error)
+        throw new Error(error)
+      }
     }
-    console.log(taskList)
     guardarDatos()
   }, [taskList])
 
@@ -38,14 +43,10 @@ function Main ({ datos }) {
     setTaskList([...addTaskItem])
   }
 
-  function getTaskList () {
-    return taskList.length === 0
-  }
-
   return (
     <main>
-      {getTaskList() ? (<></>) : (taskList.map(tl => (<TaskList key={tl.id} onDeleteTask={(id) => eventDeleteTaskList(id)} {...tl} onTaskItem={(id, unArray) => eventTaskItem(id, unArray)} onRenameTaskList={(id, rename) => { eventRanemaTaskList(id, rename) }} />)))}
-      <AddTaskList onAddTask={(nombre) => { eventAddTaskList(nombre) }} getTaskList={getTaskList} />
+      {taskList.map(tl => (<TaskList key={tl.id} onDeleteTask={(id) => eventDeleteTaskList(id)} {...tl} onTaskItem={(id, unArray) => eventTaskItem(id, unArray)} onRenameTaskList={(id, rename) => { eventRanemaTaskList(id, rename) }} />))}
+      <AddTaskList onAddTask={(nombre) => { eventAddTaskList(nombre) }} />
     </main>
   )
 }

@@ -2,7 +2,7 @@ import './App.css'
 import { useEffect, useState } from 'react'
 import Header from './components/Header'
 import Main from './components/Main'
-import localForage from './data/dataLocal'
+import localForage from 'localforage'
 
 function App () {
   const [datos, setDatos] = useState([])
@@ -10,11 +10,15 @@ function App () {
   useEffect(() => {
     async function getData () {
       try {
-        const miau = await localForage.getDataFromLocalForage('taskList')
+        console.log('obteniendoDatos')
+        const miau = await localForage.getItem('taskList')
+        if (!miau) {
+          throw Error('Miau es nullo')
+        }
         setDatos(JSON.parse(miau))
         setCargando(false)
       } catch (err) {
-        console.error(err)
+        console.error('Ocurrio un error' + err.message)
         setDatos([])
         setCargando(false)
       }

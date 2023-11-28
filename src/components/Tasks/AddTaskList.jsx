@@ -37,7 +37,7 @@ function AddTaskList ({ onAddTask, getTaskList }) {
           )
         : (
           <div className='addTaskList' onClick={toggleForm}>
-            [+] {getTaskList() ? 'Añadir una lista' : 'Añadir otra lista'}
+            [+] Añadir una nueva lista
           </div>
           )}
 

@@ -38,7 +38,6 @@ function TaskItems ({ nombre, id, completada, onDeleteTaskItem, onCheckTaskItem,
           </div>)}
 
     </>
-
   )
 }
 
